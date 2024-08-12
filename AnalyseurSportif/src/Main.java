@@ -49,7 +49,7 @@ public class Main {
                    System.out.println("Enter the performance of a team:");
                    int performanceValue = scanner.nextInt();
 
-                   var isInputDataValid = isDataInputValidvalidate(teams, teamName, performanceValue);
+                   var isInputDataValid = isDataInputValid(teams, teamName, performanceValue);
 
                    if(isInputDataValid){
                        addTeamPerformance(performances, teamName, performanceValue);
@@ -104,7 +104,7 @@ public class Main {
         }
     }
 
-    public static boolean isDataInputValidvalidate(List<String> teams,String team, int performanceValue){
+    public static boolean isDataInputValid(List<String> teams,String team, int performanceValue){
         var isInputDataValid = true;
         if(!isTeamExist(teams, team)){
             System.out.println("Team " + team + " does not exist!");
