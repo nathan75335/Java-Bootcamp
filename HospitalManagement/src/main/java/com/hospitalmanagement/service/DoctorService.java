@@ -1,8 +1,10 @@
 package com.hospitalmanagement.service;
 
 import com.hospitalmanagement.entity.Doctor;
+import com.hospitalmanagement.entity.Patient;
 import com.hospitalmanagement.exception.DoctorNotFoundException;
 import com.hospitalmanagement.repository.DoctorRepository;
+import com.hospitalmanagement.repository.PatientRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +16,7 @@ import java.util.List;
 public class DoctorService {
 
     private final DoctorRepository doctorRepository;
+    private final PatientRepository patientRepository;
 
     public Doctor getDoctorById(Long doctorId) {
         return doctorRepository.findById(doctorId)
@@ -36,6 +39,12 @@ public class DoctorService {
     }
     public String deleteDoctor(Long doctorId) {
         Doctor doctor = getDoctorById(doctorId);
+
+        for(Patient patient : doctor.getPatients()) {
+            patient.setDoctorId(null);
+            patientRepository.save(patient);
+        }
+
         doctorRepository.delete(doctor);
 
         return "doctor deleted";

@@ -26,6 +26,6 @@ public class Doctor {
     private LocalDateTime createdAt;
     @UpdateTimestamp
     private LocalDateTime updatedAt;
-    @OneToMany(mappedBy = "doctor", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "doctor", cascade = CascadeType.PERSIST)
     private List<Patient> patients = new ArrayList<>();
 }
