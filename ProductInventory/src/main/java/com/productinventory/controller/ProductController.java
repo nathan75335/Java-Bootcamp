@@ -17,7 +17,7 @@ public class ProductController {
     private final ProductService productService;
     private final FileProcessorService fileProcessorService;
 
-    @PostMapping
+    @PostMapping("/upload")
     public ResponseEntity<List<Product>> addProduct(@RequestParam(name = "file") MultipartFile file) {
         String content = fileProcessorService.readFileFromRequest(file);
         List<Product> products = fileProcessorService.parseContent(content);
